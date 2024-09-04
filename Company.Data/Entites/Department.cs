@@ -9,9 +9,8 @@ namespace Company.Data.Entites
     public class Department : BaseEntity
     { 
 
-        public string Name;
-
+        public string Name { get; set; }
         public int Code {  get; set; }
-        public ICollection<Employee> Employees { get; set; }
+        public ICollection<Employee> Employees { get; set; } = new List<Employee>();
     }
 }

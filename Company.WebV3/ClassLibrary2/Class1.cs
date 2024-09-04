@@ -1,4 +1,4 @@
-﻿namespace Company.Services
+﻿namespace ClassLibrary2
 {
     public class Class1
     {

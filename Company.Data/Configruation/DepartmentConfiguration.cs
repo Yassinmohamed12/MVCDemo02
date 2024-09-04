@@ -14,6 +14,7 @@ namespace Company.Data.Configruation
         public void Configure(EntityTypeBuilder<Department> builder)
         {
             builder.Property(x => x.Id).UseIdentityColumn(10,10);
+
             builder.HasIndex(x => x.Name).IsUnique();
         }
     }

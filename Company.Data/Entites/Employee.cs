@@ -17,11 +17,11 @@ namespace Company.Data.Entites
 
         public string PhoneNumber { get; set; }
 
-        public DateTime HiringDate { get; set; }
+        public DateTime? HiringDate { get; set; }
 
         public string ImageUrl {  get; set; }
 
-        public Department Department { get; set; }
+        public Department? Department { get; set; }
 
         public int? DepartmentId { get; set; }
     }

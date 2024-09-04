@@ -1,6 +1,8 @@
 using Comapny.Repository.Interfaces;
 using Comapny.Repository.Repository;
 using Company.Data.Context;
+using Company.Services.Interfaces;
+using Company.Services.Service;
 using Microsoft.EntityFrameworkCore;
 namespace Company.web
 {
@@ -18,8 +20,13 @@ namespace Company.web
                 option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
-            builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
-            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            //builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            //builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            builder.Services.AddScoped<IDepartmentService,DepartmentService>();
+
+            builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
             var app = builder.Build();
 
