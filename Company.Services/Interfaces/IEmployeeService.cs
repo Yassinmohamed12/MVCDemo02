@@ -18,5 +18,6 @@ namespace Company.Services.Interfaces
         public void Update(Employee employee);
 
         public void Delete(Employee employee);
+
     }
 }
