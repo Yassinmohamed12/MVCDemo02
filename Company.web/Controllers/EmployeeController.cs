@@ -8,10 +8,12 @@ namespace Company.web.Controllers
     public class EmployeeController : Controller
     {
         private readonly IEmployeeService _employeeService;
+        private readonly IDepartmentService _departmentService;
 
-        public EmployeeController(IEmployeeService employeeService)
+        public EmployeeController(IEmployeeService employeeService,IDepartmentService departmentService)
         {
             _employeeService = employeeService;
+            _departmentService = departmentService;
         }
         public IActionResult Index()
         {
@@ -23,6 +25,10 @@ namespace Company.web.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            var department = _departmentService.GetAll();
+
+            ViewBag.Department = department;
+
             return View();
         }
         [HttpPost]
@@ -40,6 +46,7 @@ namespace Company.web.Controllers
         [HttpGet]
         public IActionResult Details(int? id,string ViewName = "Details") 
         {
+
             var employee = _employeeService.GetById(id);
 
             if (employee == null) 
@@ -52,6 +59,10 @@ namespace Company.web.Controllers
         [HttpGet]
         public IActionResult Update(int? id)
         {
+            var department = _departmentService.GetAll();
+
+            ViewBag.Department = department;
+
             return Details(id,"Update");
         }
 
