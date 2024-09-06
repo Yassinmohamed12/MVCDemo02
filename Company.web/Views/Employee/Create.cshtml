@@ -1,13 +1,13 @@
 ﻿
-@model Employee
+@model EmployeeDto
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-
+    var departments = new SelectList(ViewBag.Department, nameof(DepartmentDto.Id), nameof(DepartmentDto.Name));
 }
 <h1>Create New Employee</h1>
-<form asp-action="Create">
+<form asp-action="Create" enctype ="multipart/form-data">
     <div class="form-group">
         <label class="col-form-label" asp-for="Name"></label>
         <input type="text" asp-for="Name" class="form-control" />
@@ -35,9 +35,9 @@
     </div>
 
             <div class="form-group">
-        <label class="col-form-label" asp-for="ImageUrl"></label>
-        <input type="text" asp-for="ImageUrl" class="form-control" />
-          <span asp-validation-for="ImageUrl" class="text-danger"></span>
+        <label class="col-form-label" asp-for="Image"></label>
+        <input type="file" asp-for="Image" class="form-control" />
+          <span asp-validation-for="Image" class="text-danger"></span>
     </div>
 
                 <div class="form-group">
@@ -47,12 +47,12 @@
     </div>
         <div class="form-group">
         <label asp-for="DepartmentId" class="control-label">Department</label>
-        <select asp-for="DepartmentId" class="form-control">
+        <select asp-for="DepartmentId" class="form-control" asp-items="@departments">
             <option value="">-- Select Department --</option>
-            @foreach (var department in ViewBag.Department)
+@*             @foreach (var department in ViewBag.Department)
             {
                     <option value="@department.Id">@department.Name</option>
-            }
+            } *@
         </select>
         <span asp-validation-for="DepartmentId" class="text-danger"></span>
     </div>

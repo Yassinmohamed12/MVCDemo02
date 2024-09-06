@@ -14,12 +14,10 @@ namespace Comapny.Repository.Repository
         private readonly CompanyDBContext _context;
         public EmployeeRepository(CompanyDBContext context):base(context)
         {
-
+            _context = context;
         }
 
-        public Employee GetByName(string name)
-
-           =>_context.Set<Employee>().FirstOrDefault(e => e.Name == name);
-  
+        public IEnumerable<Employee> GetByName(string name)
+            =>_context.Employees.Where(e => e.Name.Trim().ToLower().Contains(name.Trim().ToLower())).ToList();
     }
 }

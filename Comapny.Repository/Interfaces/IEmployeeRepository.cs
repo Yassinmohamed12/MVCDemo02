@@ -9,8 +9,6 @@ namespace Comapny.Repository.Interfaces
 {
     public interface IEmployeeRepository : IGeneralRepository<Employee>
     {
-        public Employee GetByName(string name);
-
-
+        public IEnumerable<Employee> GetByName(string name);
     }
 }

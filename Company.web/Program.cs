@@ -2,6 +2,7 @@ using Comapny.Repository.Interfaces;
 using Comapny.Repository.Repository;
 using Company.Data.Context;
 using Company.Services.Interfaces;
+using Company.Services.Mapping;
 using Company.Services.Service;
 using Microsoft.EntityFrameworkCore;
 namespace Company.web
@@ -22,11 +23,16 @@ namespace Company.web
 
             //builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             //builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             builder.Services.AddScoped<IDepartmentService,DepartmentService>();
 
             builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+
+            builder.Services.AddAutoMapper(x => x.AddProfile(new DepartmentProfile()));
+
+            builder.Services.AddAutoMapper(x => x.AddProfile(new EmployeeProfile()));
 
             var app = builder.Build();
 

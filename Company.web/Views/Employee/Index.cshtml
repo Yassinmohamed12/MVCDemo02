@@ -1,10 +1,20 @@
-﻿
-@model IEnumerable<Employee>;
+﻿@model IEnumerable<EmployeeDto>
 @{
     ViewData["Title"] = "Index";
 }
 
 <a asp-controller="Employee" asp-action="Create" class="btn btn-primary">Create New Employee</a>
+
+<div class="row justify-content-center align-items-center mt-5">
+    <form class="row col-8 offset-2" asp-action="Index">
+        <div class="col-8">
+            <input type="text" class="form-control" name="SearchInp" placeholder="Search By Name" />
+        </div>
+        <div class="col-4">
+            <input type="submit" value="Search" class="btn btn-success" />
+        </div>
+    </form>
+</div>
 
 @if (Model.Count() > 0)
 {
@@ -13,7 +23,10 @@
                 <tr>
                     <th>@Html.DisplayNameFor(e => e.Id)</th>
                     <th>@Html.DisplayNameFor(d => d.Name)</th>
-                    <th>@Html.DisplayNameFor(d => d.CreatedAt)</th>
+                    <th>@Html.DisplayNameFor(d => d.ImageUrl)</th>
+                    <th>@Html.DisplayNameFor(d => d.CreateAt)</th>
+                    <th>@Html.DisplayNameFor(d => d.Salary)</th>
+                    <th>@Html.DisplayNameFor(d => d.PhoneNumber)</th>
                     <th>Details</th>
                     <th>Update</th>
                     <th>Delete</th>
@@ -25,22 +38,13 @@
                     <tr>
                         <td>@employee.Id</td>
                                 <td>@employee.Name</td>
-                                <td>@employee.CreatedAt</td>
-                        <td>
-                             <a asp-action="Details" asp-route-id="@employee.Id" class="btn btn-warning">
-                                <i class="fas fa-eye"></i> Details
-                            </a>
-                        </td>
-                        <td>
-                            <a asp-action="Update" asp-route-id="@employee.Id" class="btn btn-success">
-                                <i class="fas fa-edit"></i> Update
-                            </a>
-                        </td>
-                        <td>
-                            <a asp-action="Delete" asp-route-id="@employee.Id" class="btn btn-danger">
-                                <i class="fas fa-trash"></i> Delete
-                            </a>
-                        </td>
+                                <td>
+                                    <img src="~/File/Images/@employee.ImageUrl" height="40" width="40" alt="No Image"/>
+                                </td>
+                                <td>@employee.CreateAt</td>
+                                <td>@employee.Salary</td>
+                                <td>@employee.PhoneNumber</td>
+                                <partial name="_ActionButtonsView" model="@employee.Id.ToString()" />
                     </tr>
             }
 

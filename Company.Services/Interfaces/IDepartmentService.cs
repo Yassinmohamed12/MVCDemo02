@@ -5,19 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Comapny.Repository;
+using Company.Services.Dto;
 
 namespace Company.Services.Interfaces
 {
     public interface IDepartmentService
     {
-        public Department GetById(int? id);
+        public DepartmentDto GetById(int? id);
 
-        public IEnumerable<Department> GetAll();
+        public IEnumerable<DepartmentDto> GetAll();
 
-        public void Add(Department department);
+        public void Add(DepartmentDto department);
 
-        public void Update(Department department);
+        public void Update(DepartmentDto department);
 
-        public void Delete(Department department);
+        public void Delete(DepartmentDto department);
     }
 }

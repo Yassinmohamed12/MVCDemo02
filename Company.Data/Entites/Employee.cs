@@ -24,5 +24,6 @@ namespace Company.Data.Entites
         public Department? Department { get; set; }
 
         public int? DepartmentId { get; set; }
+
     }
 }

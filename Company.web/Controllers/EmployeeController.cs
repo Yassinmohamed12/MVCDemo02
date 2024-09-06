@@ -1,5 +1,6 @@
 ﻿using Comapny.Repository.Interfaces;
 using Company.Data.Entites;
+using Company.Services.Dto;
 using Company.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,11 +16,19 @@ namespace Company.web.Controllers
             _employeeService = employeeService;
             _departmentService = departmentService;
         }
-        public IActionResult Index()
+        public IActionResult Index(string SearchInp)
         {
-            var employee = _employeeService.GetAll();
+            IEnumerable<EmployeeDto> employee = new List<EmployeeDto>();
 
-            return View(employee);
+            if (string.IsNullOrEmpty(SearchInp))
+            {
+                employee = _employeeService.GetAll();
+            }
+            else
+            {
+                employee = _employeeService.GetByName(SearchInp);
+            }
+                return View(employee);
         }
 
         [HttpGet]
@@ -32,7 +41,7 @@ namespace Company.web.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Employee employee)
+        public IActionResult Create(EmployeeDto employee)
         {
             if (ModelState.IsValid) 
             {
@@ -67,7 +76,7 @@ namespace Company.web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update(int? id,Employee employee)
+        public IActionResult Update(int? id,EmployeeDto employee)
         {
             if(employee.Id != id.Value)
             {
@@ -85,7 +94,8 @@ namespace Company.web.Controllers
             {
                 return RedirectToAction("NotFoundPage", null, "Home");
             }
-            _employeeService.Delete(employee);
+           _employeeService.Delete(employee);
+
             return RedirectToAction(nameof(Index));
         }
     }
