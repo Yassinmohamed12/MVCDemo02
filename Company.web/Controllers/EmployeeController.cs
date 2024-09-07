@@ -62,15 +62,21 @@ namespace Company.web.Controllers
             {
                 return RedirectToAction("NotFoundPage", null, "Home");
             }
+
+            var department = _departmentService.GetById(employee.DepartmentId.Value);
+
+            ViewBag.Department = department;
+
+
             return View(employee);
         }
 
         [HttpGet]
         public IActionResult Update(int? id)
         {
-            var department = _departmentService.GetAll();
+            var departments = _departmentService.GetAll();
 
-            ViewBag.Department = department;
+            ViewBag.Departments = departments;
 
             return Details(id,"Update");
         }

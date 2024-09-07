@@ -58,7 +58,7 @@
         <label asp-for="DepartmentId" class="control-label">Department</label>
         <select asp-for="DepartmentId" class="form-control">
          @*    <option value="">-- Select Department --</option> *@
-            @foreach (var department in ViewBag.Department)
+            @foreach (var department in ViewBag.Departments)
             {
                         <option value="@department.Id">@department.Name</option>
             }
