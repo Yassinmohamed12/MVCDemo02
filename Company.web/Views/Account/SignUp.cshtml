@@ -5,6 +5,9 @@
 }
 
 <h1>SignUp</h1>
+@using (Html.BeginForm("SignUp", "Account", FormMethod.Post))
+{
+	@Html.ValidationSummary(false, "", new {@class = "text-white"})
 
 <form asp-action="SignUp" class="login100-form validate-form" enctype ="multipart/form-data">
 					<span class="login100-form-logo">
@@ -31,12 +34,12 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="pass" placeholder="Password" asp-for="Password">
+						<input class="input100" type="password" name="Password" placeholder="Password" asp-for="Password">
 						<span class="focus-input100" data-placeholder="&#xf191;" asp-validation-for="Password"></span>
 					</div>
 
 						<div class="wrap-input100 validate-input" data-validate="Enter ConfirmPassowrd">
-						<input class="input100" type="password" name="pass" placeholder="ConfirmPassowrd" asp-for="ConfirmPassowrd">
+						<input class="input100" type="password" name="ConfirmPassowrd" placeholder="ConfirmPassowrd" @* asp-for="ConfirmPassowrd" *@>
 						<span class="focus-input100" data-placeholder="&#xf191;" asp-validation-for="ConfirmPassowrd"></span>
 					</div>
 
@@ -59,3 +62,4 @@
 						</a>
 					</div>
 				</form>
+}
