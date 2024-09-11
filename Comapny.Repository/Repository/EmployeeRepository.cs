@@ -1,6 +1,7 @@
 ﻿using Comapny.Repository.Interfaces;
 using Company.Data.Context;
 using Company.Data.Entites;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +20,10 @@ namespace Comapny.Repository.Repository
 
         public IEnumerable<Employee> GetByName(string name)
             =>_context.Employees.Where(e => e.Name.Trim().ToLower().Contains(name.Trim().ToLower())).ToList();
+
+        public Employee GetEmployeeWithDepartment(int Id)
+        {
+            return _context.Employees.Include(x => x.Department).FirstOrDefault(x => x.Id == Id);
+        }
     }
 }

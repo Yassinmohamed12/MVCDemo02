@@ -38,6 +38,7 @@ namespace Company.web.Controllers
 
             ViewBag.Department = department;
 
+
             return View();
         }
         [HttpPost]
@@ -94,13 +95,14 @@ namespace Company.web.Controllers
         }
         public IActionResult Delete(int? id) 
         {
-            var employee = _employeeService.GetById(id);
+            //var employee = _employeeService.GetById(id);
 
-            if(employee == null)
+            if(id is null)
             {
                 return RedirectToAction("NotFoundPage", null, "Home");
             }
-           _employeeService.Delete(employee);
+
+           _employeeService.Delete(id);
 
             return RedirectToAction(nameof(Index));
         }

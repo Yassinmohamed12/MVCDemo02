@@ -38,9 +38,11 @@ namespace Company.Services.Service
             _unitOfWork.Complete();
         }
 
-        public void Delete(DepartmentDto departmentDto)
+        public void Delete(int? Id)
         {
-            Department department = _mapper.Map<Department>(departmentDto);
+            //Department department = _mapper.Map<Department>(departmentDto);
+
+            var department = _unitOfWork.DepartmentRepository.GetById(Id.Value);
 
            _unitOfWork.DepartmentRepository.Delete(department);
 

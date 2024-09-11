@@ -12,6 +12,7 @@ namespace Comapny.Repository.Interfaces
 
         public IEmployeeRepository EmployeeRepository { get; set; }
 
+
         int Complete();
     }
 }

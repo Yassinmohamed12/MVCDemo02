@@ -10,5 +10,7 @@ namespace Comapny.Repository.Interfaces
     public interface IEmployeeRepository : IGeneralRepository<Employee>
     {
         public IEnumerable<Employee> GetByName(string name);
+
+        public Employee GetEmployeeWithDepartment(int Id);
     }
 }

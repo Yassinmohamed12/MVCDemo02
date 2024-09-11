@@ -18,7 +18,7 @@ namespace Company.Services.Interfaces
 
         public void Update(EmployeeDto employee);
 
-        public void Delete(EmployeeDto employee);
+        public void Delete(int? Id);
 
         public IEnumerable<EmployeeDto> GetByName(string name);
 

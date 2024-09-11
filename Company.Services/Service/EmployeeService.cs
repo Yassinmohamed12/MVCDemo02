@@ -47,12 +47,16 @@ namespace Company.Services.Service
             _unitOfWork.Complete();
         }
 
-        public void Delete(EmployeeDto employeeDto)
+        public void Delete(int? Id)
         {
 
-            Employee employee = _mapper.Map<Employee>(employeeDto);
+            //         Employee employee = _mapper.Map<Employee>(employeeDto);
 
-			_unitOfWork.EmployeeRepository.Delete(employee);
+            //_unitOfWork.EmployeeRepository.Delete(employee);
+
+            var employee = _unitOfWork.EmployeeRepository.GetById(Id.Value);
+
+            _unitOfWork.EmployeeRepository.Delete(employee);
 
             _unitOfWork.Complete();
         }
@@ -71,12 +75,15 @@ namespace Company.Services.Service
             if (id is null)
                 return null;
 
-            var employee =  _unitOfWork.EmployeeRepository.GetById(id.Value);
+            var employee =  _unitOfWork.EmployeeRepository.GetEmployeeWithDepartment(id.Value);
 
             if (employee is null)
                 return null;
 
+            
             EmployeeDto employeeDto = _mapper.Map<EmployeeDto>(employee);
+
+            employeeDto.DepartmentDto = _mapper.Map<DepartmentDto>(employee.Department);
 
             return employeeDto;
         }
@@ -93,7 +100,8 @@ namespace Company.Services.Service
 
         public void Update(EmployeeDto employeeDto)
         {
-			Employee employee = _mapper.Map<Employee>(employeeDto);
+
+            Employee employee = _mapper.Map<Employee>(employeeDto);
 
             _unitOfWork.EmployeeRepository.Update(employee);
 

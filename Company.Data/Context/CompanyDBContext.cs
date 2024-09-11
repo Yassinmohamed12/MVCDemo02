@@ -1,4 +1,6 @@
 ﻿using Company.Data.Entites;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace Company.Data.Context
 {
-    public class CompanyDBContext : DbContext
+    public class CompanyDBContext : IdentityDbContext<ApplicationUser>
     {
         public CompanyDBContext(DbContextOptions<CompanyDBContext> options) : base(options)
         {
-
+           
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

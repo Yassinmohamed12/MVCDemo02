@@ -19,6 +19,6 @@ namespace Company.Services.Interfaces
 
         public void Update(DepartmentDto department);
 
-        public void Delete(DepartmentDto department);
+        public void Delete(int? Id);
     }
 }

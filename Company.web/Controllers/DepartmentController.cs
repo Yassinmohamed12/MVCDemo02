@@ -66,13 +66,13 @@ namespace Company.web.Controllers
         [HttpGet]
         public IActionResult Delete(int? id) 
         {
-            var department = _departmentService.GetById(id);
+            //var department = _departmentService.GetById(id);
 
-            if (department == null)
+            if (id is null)
             {
                 return RedirectToAction("NotFoundPage", null, "Home");
             }   
-            _departmentService.Delete(department);
+            _departmentService.Delete(id);
 
             return RedirectToAction(nameof(Index));
         }
