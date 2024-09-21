@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ApplicationUser>
+
+
+
+<h1>All Users</h1>
+<br />
+
+<br />
+<div class="row justify-content-center align-items-center mt-5">
+    <form class="row col-8 offset-2" asp-action="Index">
+        <div class="col-8">
+            <input type="text" class="form-control" name="SearchInp" placeholder="Search By Name" />
+        </div>
+        <div class="col-4">
+            <input type="submit" value="Search" class="btn btn-success" />
+        </div>
+    </form>
+</div>
+
+@if (Model.Count() > 0)
+{
+                <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(e => e.Id)</th>
+                        <th>@Html.DisplayNameFor(d => d.UserName)</th>
+                        <th>@Html.DisplayNameFor(d => d.Email)</th>
+                        <th>Details</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+            @foreach (var item in Model)
+            {
+                            <tr>
+                                <td>@item.Id</td>
+                                        <td>@item.UserName</td>
+                                        <td>@item.Email</td>
+                                        <partial name="_ActionButtonsView" model="@item.Id.ToString()" />
+                            </tr>
+            }
+
+                </tbody>
+            </table>
+}
+else
+{
+                <div class="mt-5 alert alert-warning">
+                <h3>There are no Employees</h3>
+            </div>
+
+}
+
+

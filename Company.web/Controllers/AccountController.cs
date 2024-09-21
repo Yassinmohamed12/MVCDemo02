@@ -174,5 +174,9 @@ namespace Company.web.Controllers
             }
             return View(input);
         }
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
     }
 }

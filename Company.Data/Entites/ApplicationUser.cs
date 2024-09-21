@@ -14,5 +14,7 @@ namespace Company.Data.Entites
         public string LastName { get; set; }
 
         public bool IsActive { get; set; }
+
+        public bool IsDeleted {  get; set; }
     }
 }

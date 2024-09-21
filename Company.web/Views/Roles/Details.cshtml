@@ -1,0 +1,16 @@
+﻿@model IdentityRole
+
+
+<h1>Role Details</h1>
+
+<br />
+<br />
+
+<form asp-action="Update" asp-route-id="@Model.Id">
+        <div class="form-group">
+        <label class="col-form-label" asp-for="Name"></label>
+        <input type="text" asp-for="Name" class="form-control" readonly />
+    </div>
+        <input type="submit" value="Edit" class="btn btn-primary" />
+    <a asp-action="Index" class="btn btn-light">Back To List</a>
+</form>

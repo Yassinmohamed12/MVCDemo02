@@ -1,0 +1,22 @@
+﻿@model RoleUpdateViewModel
+
+<h1>Update Role</h1>
+
+<br />
+<br />
+
+<form asp-action="Update">
+    <div asp-validation-summary="All"></div>
+
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Name"></label>
+        <input type="text" asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="my-3">
+        <a class="btn btn-info" asp-action="AddOrRemoveUsers" asp-controller="Roles" asp-route-roleId="@Model.Id">Add Or Remove Users</a>
+    </div>
+    <input type="submit" value="Save" class="btn btn-primary" />
+    <a asp-action="Index" class="btn btn-light">Back To List</a>
+</form>
+

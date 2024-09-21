@@ -22,8 +22,9 @@ namespace Company.Data.Context
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            //modelBuilder.Entity<BaseEntity>().HasQueryFilter(x => !x.IsDeleted);
-
+            modelBuilder.Entity<ApplicationUser>().HasQueryFilter(x => !x.IsDeleted);
+            modelBuilder.Entity<Department>().HasQueryFilter(x => !x.IsDeleted);
+            modelBuilder.Entity<Employee>().HasQueryFilter(x => !x.IsDeleted);
             base.OnModelCreating(modelBuilder);
         }
 

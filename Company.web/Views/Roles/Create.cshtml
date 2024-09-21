@@ -1,0 +1,12 @@
+﻿@model IdentityRole
+
+<h1>Create New Role</h1>
+<form asp-action="Create" enctype ="multipart/form-data">
+    <div class="form-group">
+        <label class="col-form-label" asp-for="@Model.Name"></label>
+        <input type="text" asp-for="@Model.Name" class="form-control" />
+           <span asp-validation-for="@Model.Name" class="text-danger"></span>
+    </div>
+        <input type="submit" value="Create" class="btn btn-primary" />
+    <a asp-action="Index" class="btn btn-light">Back To List</a>
+</form>
